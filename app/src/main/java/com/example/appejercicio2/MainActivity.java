@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //Para gestionar los eventos del menú, sobreescribir el método de la actividad:
-    @Override
+    /*@Override
     public boolean onContextItemSelected(@NotNull MenuItem item) {
         switch(item.getItemId()){
             case R.id.context_Edit:
@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
             default:
                 return super.onContextItemSelected(item);
         }
-    }
+    }*/
 
     //Por ejemplo. guardar el estado de un textView si es que la pantalla gira
     @Override
