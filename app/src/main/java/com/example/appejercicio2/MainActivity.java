@@ -2,6 +2,11 @@ package com.example.appejercicio2;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.ContextMenu;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,6 +20,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
@@ -56,7 +63,63 @@ public class MainActivity extends AppCompatActivity {
             launcher.launch(intent);
         });
 
+        //Registro de Context Menu
+        registerForContextMenu((TextView) findViewById(R.id.menucontext));
 
+
+    }
+    //Para vincular el menú con la actividad se debe sobreescribir el método
+    //onCreateOptionsMenu() de la actividad. Aquí se debe “inflar” el menú definido
+    //en la carpeta “menu”.
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu4main,menu);
+        return true;
+    }
+
+   //Existen dos formas de gestionar los eventos de los iconos del App Bar:
+
+   //1. onClick para cada elemento del menú.
+    public void accionMenuIcono(MenuItem item) {
+        Log.d("msgAppBar", "App bar icon clic");
+    }
+
+    //2) Sobreescribir el método onOptionsItemSelected para todos los
+    //elementos del App Bar y validar uno por uno.
+
+    /*@Override
+    public boolean onOptionsItemSelected(@NotNull MenuItem item) {
+
+        switch(item.getItemId()){
+            case R.id.icon1:
+                Log.d("msgAppBar", "App bar icon clic");
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }*/
+
+    //ContextoMenu:
+    //Sobreescribir el método en la actividad: onCreateContextMenu() y registrar
+    //el menú creado en el paso 1.
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v , ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu,v,menuInfo);
+        getMenuInflater().inflate(R.menu.menu_context,menu);
+    }
+
+    //Para gestionar los eventos del menú, sobreescribir el método de la actividad:
+    @Override
+    public boolean onContextItemSelected(@NotNull MenuItem item) {
+        switch(item.getItemId()){
+            case R.id.context_Edit:
+                Log.d("MsgconMenu","Edit");
+                return true;
+            case R.id.context_Delete:
+                Log.d("MsgconMenu","Delete");
+                return true;
+            default:
+                return super.onContextItemSelected(item);
+        }
     }
 
     //Por ejemplo. guardar el estado de un textView si es que la pantalla gira

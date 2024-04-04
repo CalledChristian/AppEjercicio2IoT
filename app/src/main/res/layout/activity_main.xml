@@ -6,7 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:theme = "@style/Theme.AppCompat.Light.DarkActionBar">
+
 
     <TextView
         android:layout_width="match_parent"
@@ -32,5 +34,13 @@
         android:layout_height="wrap_content"
         android:text="Ir a Message Activity"
         android:layout_marginTop="30dp" />
+
+    <TextView
+        android:id="@+id/menucontext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:layout_marginTop="60dp"
+        android:text="Context Menu" />
 
 </LinearLayout>
